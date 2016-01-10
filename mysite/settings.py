@@ -10,17 +10,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 LOGIN_REDIRECT_URL = "/index/"
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = [".herokuapp.com"]
-
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR, 'static'),
-)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -36,6 +25,9 @@ TEMPLATE_DIRS = (
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$$0(71w-y1^p)0%#&()jy2-xh^q=^ny3=t(kac4oy2hduv!l5s'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 """
 import os
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -44,12 +36,14 @@ SECRET_KEY = os.environ['SECRET_KEY']
 with open ('secret.key') as f:
 	SECRET_KEY = f.read().strip()
 """
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,6 +76,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -90,8 +87,10 @@ DATABASES = {
 }
 
 import dj_database_url
-# DATABASES['default'] = dj_database_url.config()
-# DATABASES = {'default': dj_database_url.config()}
+DATABASES['default'] = dj_database_url.config()
+DATABASES = {'default': dj_database_url.config()}
+"""
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -111,4 +110,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+"""
+STATIC_URL = '/static/'
+"""
+
+"""
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+	os.path.join(BASE_DIR, 'static'),
+)
+"""
+
+
+
