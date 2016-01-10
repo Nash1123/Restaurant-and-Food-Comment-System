@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title> Restaurant Comment System </title>	
+		<title> {% block title %} {% endblock %} </title>	
 		<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet"
@@ -38,16 +38,8 @@
 		<div class="container">
 			<div class="system">
 				<br><br>
-				<h2> Welcome to Restaurant Comment System </h2>
-				{% if request.user.is_authenticated %}
-					<p>{{ request.user }} Login Success! 
-						<a href="/accounts/logout/"> Logout </a>
-					</p>
-					<a href='/restaurants_list/'> Restaurant List </a>
-				{% else %}
-					<p> Please login <a href="/accounts/login/"> Login </a></p>
-					<p> Or register for a new account <a href="/accounts/register/"> Register </a></p>
-				{% endif %}			
+				<h2> {% block h2 %} {% endblock %} </h2>
+				{% block content %} {% endblock %}
 			</div>
 		</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
