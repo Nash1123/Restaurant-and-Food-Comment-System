@@ -78,9 +78,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 import dj_database_url
-
 DATABASES = {'default': dj_database_url.config()}
-# DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+
 """
 DATABASES = {
     'default': {
@@ -88,10 +87,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 DATABASES = {'default': dj_database_url.config()}
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 """
 
 
