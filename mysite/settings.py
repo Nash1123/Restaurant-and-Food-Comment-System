@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 LOGIN_REDIRECT_URL = "/index/"
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [".herokuapp.com"]
 
 import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
