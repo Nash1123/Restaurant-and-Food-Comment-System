@@ -79,8 +79,8 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 import dj_database_url
 
-
-DATABASES = {'default': dj_database_url.config()}
+DATABASES['default'] =  dj_database_url.config()
+# DATABASES = {'default': dj_database_url.config()}
 
 """
 DATABASES = {
@@ -115,6 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 ## import os
+import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
