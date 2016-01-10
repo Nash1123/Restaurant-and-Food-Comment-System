@@ -35,7 +35,7 @@ TEMPLATE_DIRS = (
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '$$0(71w-y1^p)0%#&()jy2-xh^q=^ny3=t(kac4oy2hduv!l5s'
+SECRET_KEY = '$$0(71w-y1^p)0%#&()jy2-xh^q=^ny3=t(kac4oy2hduv!l5s'
 """
 import os
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -44,7 +44,6 @@ SECRET_KEY = os.environ['SECRET_KEY']
 with open ('secret.key') as f:
 	SECRET_KEY = f.read().strip()
 """
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
