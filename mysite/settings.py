@@ -40,8 +40,10 @@ TEMPLATE_DIRS = (
 import os
 SECRET_KEY = os.environ['SECRET_KEY']
 """
+"""
 with open ('secret.key') as f:
 	SECRET_KEY = f.read().strip()
+"""
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
