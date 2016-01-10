@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Menue </title>	
+	<style>
+		table, th, td {
+			border: 1px solid black;
+		}
+	</style>
+	</head>
+	<body>
+		{% for r in restaurants %}
+		<h2> {{ r.name }} </h2>
+		{% if r.food_set.all %}
+		<p> There are {{r.food_set.all|length }} foods. </p>
+		<table>
+			<tr>
+				<th> Name </th>
+				<th> Price </th>
+				<th> Spicy </th>
+				<th> Comment </th>
+			</tr>
+			{% for food in r.food_set.all %}
+			<tr>
+				<td> {{ food.name }} </td>
+				<td> {{ food.price }} </td>
+				<td> {% if food.is_Spicy %} Hot {% endif %}</td>
+				<td> {{ food.comment }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<p> Waiting for updating...</p>
+		{% endif %}
+		{% endfor %}
+	</body>
+</html>

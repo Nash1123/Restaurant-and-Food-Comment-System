@@ -1,0 +1,29 @@
+{% extends 'base.html '%}
+{% block title %} Restaurants List {% endblock %}
+
+{% block h2 %} Restaurants List {% endblock %}
+
+{% block content %} 
+	<table class="table">
+		<tr>
+			<th> Menu </th>
+			<th> Name </th>
+			<th> Phone </th>
+			<th> Address </th>
+			{% if perms.restaurants.can_comment %}
+			<th> Comment </th>
+			{% endif %}
+		</tr>
+		{% for r in restaurants %}
+			<tr>
+				<td> <a href="/menu/{{r.id}}"> menu </a> </td>
+				<td> {{ r.name }} </td>
+				<td> {{ r.phone_number }} </td>
+				<td> {{ r.address }} </td>
+				{% if perms.restaurants.can_comment %}
+				<td> <a href="/comment/{{r.id}}"> comment </a> </td>
+				{% endif %}
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Menue </title>	
+		<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<style>
+		th { text-align: center; }
+		div.menus {
+			text-align: center;
+			padding: 40px 15px;
+		}
+	</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> 
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>					
+					</button>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="menus">
+				<br>
+				<h2> {{ r.name }} </h2>
+				{% if r.food_set.all %}
+				<p> There are {{r.food_set.all|length }} foods. </p>
+				<table class="table">
+					<tr>
+						<th> Name </th>
+						<th> Price </th>
+						<th> Spicy </th>
+						<th> Comment </th>
+					</tr>
+					{% for food in r.food_set.all %}
+					<tr>
+						<td> {{ food.name }} </td>
+						<td> {{ food.price }} </td>
+						<td> {% if food.is_Spicy %} Hot {% endif %}</td>
+						<td> {{ food.comment }} </td>
+					</tr>
+					{% endfor %}
+				</table>
+				{% else %}
+				<p> Waiting for updating...</p>
+				{% endif %}
+			</div>
+		</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	</body>
+</html>
