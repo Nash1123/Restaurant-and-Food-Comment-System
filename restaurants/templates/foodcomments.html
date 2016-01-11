@@ -42,7 +42,7 @@
 			<div class="comments">
 				<br>
 				<h2> Comments of {{ f.name }} </h2>
-				{% if f.comment_set.all %}
+				{% if f.foodcomment_set.all %}
 				<p> There are {{f.comment_set.all|length }} comments. </p>
 				<table class="table">
 					<tr>
@@ -50,7 +50,7 @@
 						<th> Time </th>
 						<th> Comment </th>
 					</tr>
-					{% for c in f.comment_set.all %}
+					{% for c in f.foodcomment_set.all %}
 					<tr>
 						<td> {{ c.visitor }} </td>
 						<td> {{ c.date_time | date:"F j, Y" }} </td>
