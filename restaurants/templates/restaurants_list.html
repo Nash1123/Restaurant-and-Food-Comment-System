@@ -41,7 +41,9 @@
 				<h2> Restaurants List </h2>
 				<table class="table">
 					<tr>
+						{% if perms.restaurants.can_comment %}
 						<th> Menu </th>
+						{% endif %}
 						<th> Name </th>
 						<th> Phone </th>
 						<th> Address </th>
@@ -51,7 +53,9 @@
 					</tr>
 					{% for r in restaurants %}
 						<tr>
+							{% if perms.restaurants.can_comment %}
 							<td> <a href="/menu/{{r.id}}"> menu </a> </td>
+							{% endif %}
 							<td> {{ r.name }} </td>
 							<td> {{ r.phone_number }} </td>
 							<td> {{ r.address }} </td>

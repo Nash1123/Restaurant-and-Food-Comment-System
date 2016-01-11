@@ -24,7 +24,7 @@ urlpatterns = patterns('',
 	url(r'^accounts/register/$', register),
 	url(r'^index/$', index),
 	url(r'^menu/(\d{1,5})/$', login_required(menu)),
-	url(r'^restaurants_list/$', login_required(list_restaurants)),
+	url(r'^restaurants_list/$', list_restaurants),
 	url(r'^comment/(\d{1,5})/$', login_required(comment)),	
 	
 	url(r'^welcome/$', welcome),	
