@@ -25,7 +25,9 @@
 					<span class="icon-bar"></span>					
 					</button>
 					<a class="navbar-brand" href="#"> Hi, {{ request.user }} </a>
+					<a class="navbar-brand" href="/index/"> Home Page </a>
 					<a class="navbar-brand" href="/restaurants_list/"> Restaurants List </a>
+					<a class="navbar-brand" href="#"> Menu </a>
 					{% if request.user.is_authenticated %}}
 						<a class="navbar-brand" href="/accounts/logout/"> Logout </a>
 					{% else %} 
@@ -41,19 +43,24 @@
 				<h2> {{ r.name }} </h2>
 				{% if r.food_set.all %}
 				<p> There are {{r.food_set.all|length }} foods. </p>
+				
 				<table class="table">
 					<tr>
 						<th> Name </th>
 						<th> Price </th>
 						<th> Spicy </th>
+						{% if perms.restaurants.food_can_comment %}
 						<th> Comment </th>
+						{% endif %}
 					</tr>
 					{% for food in r.food_set.all %}
 					<tr>
 						<td> {{ food.name }} </td>
 						<td> {{ food.price }} </td>
 						<td> {% if food.is_Spicy %} Hot {% endif %}</td>
-						<td> {{ food.comment }} </td>
+						{% if perms.restaurants.food_can_comment %}
+						<td> <a href="/foodcomment/{{food.id}}"> comment </a> </td>
+						{% endif %}
 					</tr>
 					{% endfor %}
 				</table>

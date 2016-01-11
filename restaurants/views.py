@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.utils import timezone
 from django.template import RequestContext
-from restaurants.models import Restaurant, Food, Comment
+from restaurants.models import Restaurant, Food, Comment, FoodComment
 from restaurants.forms import CommentForm
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -23,9 +23,10 @@ def list_restaurants(request):
 	return render_to_response('restaurants_list.html', RequestContext(request, locals()))
 
 def menu(request, id):
+	print request.user.user_permissions.all()
 	if id:
 		r = Restaurant.objects.get(id=id)
-		return render_to_response('menu.html', locals())
+		return render_to_response('menu.html', RequestContext(request, locals()))
 	else:
 		return HttpResponseRedirect("/restaurants_list/")
 
@@ -55,6 +56,34 @@ def comment(request, id):
 	else:
 		f = CommentForm();
 	return render_to_response('comments.html', RequestContext(request, locals()))	
+	
+
+@permission_required('restaurants.food_can_comment', login_url='/accounts/login/')
+def foodcomment(request, id):	
+	if id:
+		f = Food.objects.get(id=id)
+	else:
+		return HttpResponseRedirect("/menu/")
+	# error = True
+	# errors = []
+	if request.POST:
+		cf = CommentForm(request.POST)
+		if cf.is_valid():
+			visitor = cf.cleaned_data['visitor']
+			content = cf.cleaned_data['content']
+			email = cf.cleaned_data['email']
+			date_time = timezone.localtime(timezone.now())
+			c = FoodComment.objects.create(
+				visitor=visitor,
+				email=email,
+				content=content,
+				date_time=date_time,
+				food=f
+			)
+			cf = CommentForm()
+	else:
+		cf = CommentForm();
+	return render_to_response('foodcomments.html', RequestContext(request, locals()))	
 	
 def meta(request):
 	values = request.META.items()

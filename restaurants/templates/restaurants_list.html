@@ -25,7 +25,8 @@
 					<span class="icon-bar"></span>					
 					</button>
 					<a class="navbar-brand" href="#"> Hi, {{ request.user }} </a>
-					<a class="navbar-brand" href="/restaurants_list/"> Restaurants List </a>
+					<a class="navbar-brand" href="/index/"> Home Page </a>
+					<a class="navbar-brand" href="#"> Restaurants List </a>
 					{% if request.user.is_authenticated %}}
 						<a class="navbar-brand" href="/accounts/logout/"> Logout </a>
 					{% else %} 
@@ -41,7 +42,7 @@
 				<h2> Restaurants List </h2>
 				<table class="table">
 					<tr>
-						{% if perms.restaurants.can_comment %}
+						{% if request.user.is_authenticated %}
 						<th> Menu </th>
 						{% endif %}
 						<th> Name </th>
@@ -53,7 +54,7 @@
 					</tr>
 					{% for r in restaurants %}
 						<tr>
-							{% if perms.restaurants.can_comment %}
+							{% if request.user.is_authenticated %}
 							<td> <a href="/menu/{{r.id}}"> menu </a> </td>
 							{% endif %}
 							<td> {{ r.name }} </td>

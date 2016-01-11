@@ -6,7 +6,7 @@ from views import here, math
 from views import login, logout
 """
 from views import index, welcome, register
-from restaurants.views import menu, meta, list_restaurants, comment
+from restaurants.views import menu, meta, list_restaurants, comment, foodcomment
 from django.contrib.auth.views import login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -26,6 +26,7 @@ urlpatterns = patterns('',
 	url(r'^menu/(\d{1,5})/$', login_required(menu)),
 	url(r'^restaurants_list/$', list_restaurants),
 	url(r'^comment/(\d{1,5})/$', login_required(comment)),	
+	url(r'^foodcomment/(\d{1,5})/$', login_required(foodcomment)),		
 	
 	url(r'^welcome/$', welcome),	
 	url(r'^meta/$', meta),
